@@ -368,6 +368,7 @@ export interface ApiTxactionTxaction extends Schema.CollectionType {
     singularName: 'txaction';
     pluralName: 'txactions';
     displayName: 'txaction';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -375,7 +376,11 @@ export interface ApiTxactionTxaction extends Schema.CollectionType {
   attributes: {
     action_datetime: Attribute.DateTime & Attribute.Required;
     type: Attribute.Enumeration<['income', 'expense']> & Attribute.Required;
-    amount: Attribute.Decimal & Attribute.Required;
+    amount: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0.1;
+      }>;
     note: Attribute.String & Attribute.Required;
     creator: Attribute.Relation<
       'api::txaction.txaction',
@@ -624,7 +629,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -658,6 +662,18 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::txaction.txaction'
     >;
+    firstname: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+        maxLength: 30;
+      }>;
+    lastname: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+        maxLength: 30;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

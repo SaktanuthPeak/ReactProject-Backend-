@@ -4,7 +4,8 @@
   "info": {
     "singularName": "txaction",
     "pluralName": "txactions",
-    "displayName": "txaction"
+    "displayName": "txaction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -25,7 +26,8 @@
     },
     "amount": {
       "type": "decimal",
-      "required": true
+      "required": true,
+      "min": 0.1
     },
     "note": {
       "type": "string",

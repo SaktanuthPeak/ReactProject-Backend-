@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -71,6 +70,19 @@
       "relation": "oneToMany",
       "target": "api::txaction.txaction",
       "mappedBy": "creator"
+    },
+    "firstname": {
+      "type": "string",
+      "maxLength": 30,
+      "minLength": 1,
+      "required": true,
+      "unique": false
+    },
+    "lastname": {
+      "type": "string",
+      "required": true,
+      "maxLength": 30,
+      "minLength": 1
     }
   }
 }
